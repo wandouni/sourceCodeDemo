@@ -1,0 +1,41 @@
+<!--
+ * @Author: wandouni
+ * @Date: 2022-02-24 10:36:53
+ * @LastEditors: wandouni
+ * @LastEditTime: 2022-02-24 10:38:03
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let first = null;
+      let last = null;
+
+      // 链表
+      const createObj = (value) => {
+        let tmp = (last = { value, prev: last, next: null });
+        if (tmp.prev) {
+          tmp.prev.next = tmp;
+        } else {
+          first = tmp;
+        }
+        return tmp;
+      };
+
+      let obj1 = createObj(1);
+      console.log(obj1);
+      let obj2 = createObj(2);
+      console.log(obj2);
+      let obj3 = createObj(3);
+      console.log(obj3);
+      let obj4 = createObj(4);
+      console.log(obj4);
+    </script>
+  </body>
+</html>
