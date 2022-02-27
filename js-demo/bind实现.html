@@ -1,0 +1,52 @@
+<!--
+ * @Author: wandouni
+ * @Date: 2022-02-27 17:24:27
+ * @LastEditors: wandouni
+ * @LastEditTime: 2022-02-27 17:29:53
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const wandou = {
+        age: 27,
+        printAge: function (value) {
+          return this.age;
+        },
+      };
+
+      const printAge = wandou.printAge;
+      console.log(printAge()); //undefined
+
+      const bindPrintAge = printAge.bind(wandou);
+      console.log(bindPrintAge()); //27
+
+      console.log("-----------------split line");
+
+      Function.prototype.bind1 = function () {
+        const func = this;
+        const obj = Array.prototype.shift.call(arguments);
+        const param = Array.prototype.slice.call(arguments);
+        return function () {
+          // apply 数组
+          return func.apply(
+            obj,
+            Array.prototype.concat.call(
+              param,
+              Array.prototype.slice.call(arguments)
+            )
+          );
+          // call 分别接受参数
+        };
+      };
+      const bindPrintAge1 = wandou.printAge.bind1(wandou);
+      console.log(bindPrintAge1()); // 27
+    </script>
+  </body>
+</html>
