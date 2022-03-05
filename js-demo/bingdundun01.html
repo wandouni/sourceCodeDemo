@@ -1,0 +1,284 @@
+<!--
+ * @Author: wandouni
+ * @Date: 2022-03-05 15:43:21
+ * @LastEditors: wandouni
+ * @LastEditTime: 2022-03-05 22:52:43
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="container" width="1024" height="1024"></canvas>
+    <script>
+      const canvas = document.getElementById("container");
+      const context = canvas.getContext("2d");
+
+      const middleLineX = 500;
+      const getduichengdian = (x, middle = middleLineX) => 2 * middle - x;
+
+      // WENZI
+      context.font = "58px sans-serif";
+      context.fillText("Hi~", 100, 270);
+
+      // 外边框
+      context.beginPath();
+      context.lineWidth = 6;
+      context.moveTo(399, 118);
+      context.bezierCurveTo(305, 30, 155, 190, 237, 268);
+      context.quadraticCurveTo(209, 290, 206, 335);
+      context.bezierCurveTo(10, 200, 45, 596, 215, 645);
+      context.quadraticCurveTo(225, 708, 302, 769);
+      context.bezierCurveTo(264, 1080, 511, 1080, 521, 847);
+      context.bezierCurveTo(511, 1080, 797, 1080, 712, 773);
+      context.quadraticCurveTo(753, 753, 774, 718);
+      context.bezierCurveTo(850, 790, 1014, 755, 870, 467);
+      context.quadraticCurveTo(850, 380, 816, 280);
+      context.bezierCurveTo(900, 200, 760, 75, 681, 136);
+      context.quadraticCurveTo(543, 70, 399, 118);
+      context.stroke();
+
+      // 黑色背景
+      context.beginPath();
+      context.moveTo(399, 133);
+      // 1
+      context.bezierCurveTo(305, 30, 155, 190, 264, 268);
+      // 2
+      context.quadraticCurveTo(219, 285, 210, 355);
+      // 3
+      context.bezierCurveTo(30, 210, 60, 556, 215, 625);
+      // 4
+      context.quadraticCurveTo(245, 700, 315, 770);
+      // 5
+      context.bezierCurveTo(274, 1070, 521, 1070, 510, 831);
+      // hengkang
+      context.quadraticCurveTo(519, 827, 535, 830);
+      // 1
+      context.bezierCurveTo(511, 1070, 797, 1060, 700, 780);
+      // 2
+      context.quadraticCurveTo(743, 743, 770, 708);
+      // 3
+      context.bezierCurveTo(840, 780, 1010, 750, 860, 467);
+      // 4
+      context.quadraticCurveTo(840, 370, 805, 280);
+      // 5
+      context.bezierCurveTo(890, 200, 750, 75, 681, 150);
+      // 6
+      context.quadraticCurveTo(543, 70, 399, 133);
+      context.fillStyle = "#000";
+      context.fill();
+
+      //内圈
+      context.beginPath();
+      context.moveTo(530, 116);
+      context.bezierCurveTo(100, 116, 100, 817, 530, 817);
+      context.bezierCurveTo(900, 817, 900, 116, 530, 116);
+      context.fillStyle = "#fff";
+      context.fill();
+
+      const colorList = ["#d1d06e", "#d28c95", "#2b6783"];
+      //绿圈 红圈 蓝圈
+      for (let i = 0; i < colorList.length; i++) {
+        const topx = 500;
+        const topy = 185 + i * 10;
+        const buttomx = 500;
+        const bottomy = 605 - i * 10;
+        context.beginPath();
+        context.moveTo(topx, topy);
+        context.bezierCurveTo(
+          150 + i * 10,
+          topy,
+          150 + i * 10,
+          bottomy,
+          buttomx,
+          bottomy
+        );
+        context.bezierCurveTo(
+          850 - i * 10,
+          bottomy,
+          850 - i * 10,
+          topy,
+          topx,
+          topy
+        );
+        context.fillStyle = colorList[i];
+        context.fill();
+      }
+
+      // 黑边
+      const topx = 500;
+      const topy = 185 + 3 * 10;
+      const buttomx = 500;
+      const bottomy = 605 - 3 * 10;
+      context.beginPath();
+      context.moveTo(topx, topy);
+      context.bezierCurveTo(
+        150 + 3 * 10,
+        topy,
+        150 + 3 * 10,
+        bottomy,
+        buttomx,
+        bottomy
+      );
+      context.bezierCurveTo(
+        850 - 3 * 10,
+        bottomy,
+        850 - 3 * 10,
+        topy,
+        topx,
+        topy
+      );
+      context.stroke();
+
+      context.beginPath();
+      const topx1 = 500;
+      const topy1 = 185 + 3 * 10 - 1;
+      const buttomx1 = 500;
+      const bottomy1 = 605 - 3 * 10 - 1;
+      context.beginPath();
+      context.moveTo(topx1, topy1);
+      context.bezierCurveTo(
+        150 + 3 * 10 - 3,
+        topy,
+        150 + 3 * 10 - 3,
+        bottomy1,
+        buttomx1,
+        bottomy1
+      );
+      context.bezierCurveTo(
+        850 - 3 * 10 - 3,
+        bottomy1,
+        850 - 3 * 10 - 3,
+        topy,
+        topx1,
+        topy1
+      );
+      context.fillStyle = "white";
+      context.fill();
+
+      // 眼睛左边
+      context.beginPath();
+      context.moveTo(451, 296);
+      context.bezierCurveTo(399, 252, 280, 390, 342, 453);
+      context.bezierCurveTo(440, 485, 508, 333, 451, 296);
+      context.fillStyle = "#000";
+      context.fill();
+
+      // 眼睛右边
+      context.beginPath();
+      context.moveTo(getduichengdian(451), 296);
+      context.bezierCurveTo(
+        getduichengdian(399),
+        252,
+        getduichengdian(280),
+        390,
+        getduichengdian(342),
+        453
+      );
+      context.bezierCurveTo(
+        getduichengdian(440),
+        485,
+        getduichengdian(508),
+        333,
+        getduichengdian(451),
+        296
+      );
+      context.fillStyle = "#000";
+      context.fill();
+
+      //左边眼睛里面的圈
+      context.beginPath();
+      context.arc(
+        415,
+        370,
+        35,
+        (Math.PI / 180) * 0,
+        (Math.PI / 180) * 360,
+        false
+      );
+      context.lineWidth = 8;
+      context.strokeStyle = "#fff";
+      context.stroke();
+
+      // 左边眼睛里面的高光
+      context.beginPath();
+      context.arc(
+        410,
+        360,
+        12,
+        (Math.PI / 180) * 0,
+        (Math.PI / 180) * 360,
+        false
+      );
+      context.fillStyle = "#fff";
+      context.fill();
+
+      //右边眼睛里面的圈
+      context.beginPath();
+      context.arc(
+        getduichengdian(415),
+        370,
+        35,
+        (Math.PI / 180) * 0,
+        (Math.PI / 180) * 360,
+        false
+      );
+      context.lineWidth = 8;
+      context.strokeStyle = "#fff";
+      context.stroke();
+
+      // 左边眼睛里面的高光
+      context.beginPath();
+      context.arc(
+        getduichengdian(410) - 15,
+        360,
+        12,
+        (Math.PI / 180) * 0,
+        (Math.PI / 180) * 360,
+        false
+      );
+      context.fillStyle = "#fff";
+      context.fill();
+
+      // 嘴
+      context.beginPath();
+      context.moveTo(437, 469);
+      context.quadraticCurveTo(middleLineX, 520, getduichengdian(437), 469);
+      context.lineWidth = 10;
+      context.lineCap = "round";
+      context.strokeStyle = "#000";
+      context.stroke();
+
+      // logo
+      var img = new Image();
+      img.onload = function () {
+        context.drawImage(img, 420, 615, 210, 163);
+      };
+      img.src = "./images/OIP-C.jpeg";
+
+      // aixin
+      context.beginPath();
+      context.moveTo(148, 400);
+      context.bezierCurveTo(128, 375, 76, 420, 152, 456);
+      context.bezierCurveTo(200, 430, 183, 368, 148, 400);
+      context.fillStyle = "#fb001f";
+      context.fill();
+
+      // BIZI
+      context.beginPath();
+      context.lineCap = "round";
+      context.moveTo(470, 419);
+      // context.lineTo(500, 449);
+      // context.lineTo(534, 419);
+      context.quadraticCurveTo(488, 442, 500, 449);
+      context.quadraticCurveTo(521, 445, 534, 419);
+      context.quadraticCurveTo(500, 410, 470, 419);
+      context.fillStyle = "#000";
+      context.fill();
+    </script>
+  </body>
+</html>
